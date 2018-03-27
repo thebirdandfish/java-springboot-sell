@@ -1,9 +1,13 @@
 package top.linxz.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import top.linxz.sell.dataobject.OrderDetail;
+import top.linxz.sell.enums.OrderStatusEnum;
+import top.linxz.sell.enums.PayStatusEnum;
+import top.linxz.sell.utils.EnumUtil;
 import top.linxz.sell.utils.serializer.Date2LongSerializer;
 
 import java.math.BigDecimal;
@@ -33,4 +37,14 @@ public class OrderDTO {
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

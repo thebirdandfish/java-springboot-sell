@@ -55,7 +55,7 @@
                                     <#if orderDTO.getOrderStatusEnum().message == "新订单" >
 
                                         <a href="/sell/seller/order/finish?orderId=${orderDTO.orderId}" type="button"
-                                           class="btn btn-default btn-primary">按钮</a>
+                                           class="btn btn-default btn-primary">完结</a>
                                         <a href="/sell/seller/order/cancel?orderId=${orderDTO.orderId}" type="button"
                                            class="btn btn-default btn-danger">取消</a>
                                     </#if>

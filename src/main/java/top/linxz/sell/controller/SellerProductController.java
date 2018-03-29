@@ -18,6 +18,7 @@ import top.linxz.sell.exception.SellException;
 import top.linxz.sell.form.ProductForm;
 import top.linxz.sell.service.CategoryService;
 import top.linxz.sell.service.ProductService;
+import top.linxz.sell.utils.KeyUtil;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -102,11 +103,17 @@ public class SellerProductController {
             return new ModelAndView("common/error", map);
         }
 
-
+        ProductInfo productInfo = new ProductInfo();
         try {
-            ProductInfo productInfo = productService.findOne(form.getProductId());
+            if (!StringUtils.isEmpty(form.getProductId())) {
+                productInfo = productService.findOne(form.getProductId());
+            } else {
+                form.setProductId(KeyUtil.genUniqueKey());
+            }
+
             BeanUtils.copyProperties(form, productInfo);
             productService.save(productInfo);
+
         } catch (SellException e) {
             map.put("msg", e.getMessage());
             map.put("url", "/sell/seller/product/list");

@@ -29,7 +29,7 @@ public class ProductInfo {
     private String productIcon;
 
     //0normal, 1 下架
-    private Integer productStatus;
+    private Integer productStatus = ProductStatusEnum.UP.getCode();
 
     private Integer categoryType;
     private Date createTime;

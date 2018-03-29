@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import top.linxz.sell.dataobject.ProductInfo;
+import top.linxz.sell.exception.SellException;
 import top.linxz.sell.service.ProductService;
 
 import java.util.Map;
@@ -30,5 +31,39 @@ public class SellerProductController {
         map.put("size", size);
 
         return new ModelAndView("product/list", map);
+    }
+
+    @GetMapping("/on_sale")
+    public ModelAndView onSale(@RequestParam(value = "productId") String productid,
+                               Map<String, Object> map) {
+
+        try {
+            productService.onSale(productid);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/product/list");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("msg", "成功");
+        map.put("url", "/sell/seller/product/list");
+        return new ModelAndView("common/success", map);
+    }
+
+    @GetMapping("/off_sale")
+    public ModelAndView offSale(@RequestParam(value = "productId") String productid,
+                                Map<String, Object> map) {
+
+        try {
+            productService.offSale(productid);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/product/list");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("msg", "成功");
+        map.put("url", "/sell/seller/product/list");
+        return new ModelAndView("common/success", map);
     }
 }

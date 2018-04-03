@@ -14,5 +14,6 @@ public class ProjectUrlConfig {
     public String wechatOpenAuthorize;
 
     public String sell;
+    public String openid;
 }
 

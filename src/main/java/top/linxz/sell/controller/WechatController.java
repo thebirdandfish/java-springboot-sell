@@ -57,14 +57,12 @@ public class WechatController {
 
     @GetMapping("/qrAuthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
-        String url = projectUrlConfig.getWechatOpenAuthorize() + "/sell/wechat/qrUserInfo";
-        String redirectUrl = wxOpenService.buildQrConnectUrl(url, WxConsts.QRCONNECT_SCOPE_SNSAPI_LOGIN, URLEncoder.encode(returnUrl));
+        String redirectUrl = wxOpenService.buildQrConnectUrl(returnUrl, WxConsts.QRCONNECT_SCOPE_SNSAPI_LOGIN, URLEncoder.encode(projectUrlConfig.getSell() + "/sell/wechat/qrUserInfo"));
         return "redirect:" + redirectUrl;
     }
 
     @GetMapping("/qrUserInfo")
-    public String qrUserInfo(@RequestParam("code") String code,
-                             @RequestParam("state") String returnUrl) {
+    public String qrUserInfo(@RequestParam("code") String code) {
 
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
         try {
@@ -77,6 +75,8 @@ public class WechatController {
         log.info("wxMpOAuth2AccessToken={}", wxMpOAuth2AccessToken);
         String openId = wxMpOAuth2AccessToken.getOpenId();
 
-        return "redirect:" + returnUrl + "?openid=" + openId;
+        String redirectUrl = projectUrlConfig.getSell() + "/sell/seller/login";
+
+        return "redirect:" + redirectUrl + "?openid=" + openId;
     }
 }

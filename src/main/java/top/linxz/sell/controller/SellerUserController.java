@@ -15,6 +15,8 @@ import top.linxz.sell.enums.ResultEnum;
 import top.linxz.sell.service.SellerService;
 import top.linxz.sell.utils.CookieUtil;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 import java.util.UUID;
@@ -56,7 +58,17 @@ public class SellerUserController {
     }
 
     @GetMapping("/logout")
-    public void logout() {
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, Map<String, Object> map) {
+        Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
+        if (cookie != null) {
+            redisTemplate.opsForValue().getOperations().delete(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
 
+            CookieUtil.set(response, CookieConstant.TOKEN, null, 0);
+        }
+
+        map.put("msg", ResultEnum.LOGIN_FAIL);
+        map.put("url", "/sell/seller/order/list");
+
+        return new ModelAndView("common/success", map);
     }
 }

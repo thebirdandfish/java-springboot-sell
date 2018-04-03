@@ -17,6 +17,8 @@ wechat:
   mpAppSecret: 4c64c995ac89aae39629c5f8e9244dfd
   openAppId: wx6ad144e54af6xxxx
   openAppSecret: 91a2ff6d38a2bbccfb7e9f907910xxxx
+  templateId:
+    orderStatus: gyDwQ9Ies-XwaqtbdspXJP8QCdHVyAbEggSIt0kNN94
 
 projectUrl:
   wechatMpAuthorize: http://mpsell.natapp1.cc

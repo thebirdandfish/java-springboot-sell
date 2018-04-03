@@ -22,6 +22,7 @@ import top.linxz.sell.repository.OrderDetailRepository;
 import top.linxz.sell.repository.OrderMasterRepository;
 import top.linxz.sell.service.OrderService;
 import top.linxz.sell.service.ProductService;
+import top.linxz.sell.service.PushMessageService;
 import top.linxz.sell.utils.KeyUtil;
 
 import javax.transaction.Transactional;
@@ -42,6 +43,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+    @Autowired
+    private PushMessageService pushMessageService;
 
     @Override
     @Transactional
@@ -173,6 +176,9 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】更新失败，orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        //推送微信模版消息
+        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
     }

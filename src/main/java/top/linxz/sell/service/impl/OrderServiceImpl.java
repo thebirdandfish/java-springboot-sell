@@ -23,6 +23,7 @@ import top.linxz.sell.repository.OrderMasterRepository;
 import top.linxz.sell.service.OrderService;
 import top.linxz.sell.service.ProductService;
 import top.linxz.sell.service.PushMessageService;
+import top.linxz.sell.service.WebSocket;
 import top.linxz.sell.utils.KeyUtil;
 
 import javax.transaction.Transactional;
@@ -45,6 +46,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
     @Autowired
     private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -87,6 +91,9 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送
+        webSocket.sendMessage("有新的订单");
 
         return orderDTO;
     }

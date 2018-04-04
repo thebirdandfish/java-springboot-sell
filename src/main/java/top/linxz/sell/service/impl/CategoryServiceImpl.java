@@ -3,6 +3,7 @@ package top.linxz.sell.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.linxz.sell.dataobject.ProductCategory;
+import top.linxz.sell.dataobject.dao.ProductCategoryDao;
 import top.linxz.sell.repository.ProductCategoryRepository;
 import top.linxz.sell.service.CategoryService;
 
@@ -13,6 +14,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private ProductCategoryRepository repository;
+
+    @Autowired
+    private ProductCategoryDao dao;
 
     @Override
     public ProductCategory findOne(Integer categoryId) {

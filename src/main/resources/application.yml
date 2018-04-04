@@ -25,3 +25,6 @@ projectUrl:
   wechatOpenAuthorize: http://mpsell.natapp1.cc
   sell: http://mpsell.natapp1.cc
   openid: oTgZpwWYCeCLQaPtso5aGoLD_zQY
+logging:
+  level:
+     top.linxz.sell.dataobject.mapper: trace

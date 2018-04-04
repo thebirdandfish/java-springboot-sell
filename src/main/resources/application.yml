@@ -28,3 +28,6 @@ projectUrl:
 logging:
   level:
      top.linxz.sell.dataobject.mapper: trace
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

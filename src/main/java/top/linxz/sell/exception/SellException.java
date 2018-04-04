@@ -1,7 +1,9 @@
 package top.linxz.sell.exception;
 
+import lombok.Getter;
 import top.linxz.sell.enums.ResultEnum;
 
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;

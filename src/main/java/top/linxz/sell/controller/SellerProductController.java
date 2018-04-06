@@ -97,7 +97,6 @@ public class SellerProductController {
 
 
     @PostMapping("/save")
-//    @CachePut(cacheNames = "product",key="123")
     @CacheEvict(cacheNames = "product", key = "123")
     public ModelAndView save(@Valid ProductForm form, BindingResult bindingResult, Map<String, Object> map) {
         if (bindingResult.hasErrors()) {

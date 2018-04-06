@@ -53,7 +53,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
-
         String orderId = KeyUtil.genUniqueKey();
 
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);

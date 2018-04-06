@@ -3,9 +3,7 @@ package top.linxz.sell.controller;
 import com.lly835.bestpay.model.PayResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import top.linxz.sell.dto.OrderDTO;
 import top.linxz.sell.enums.ResultEnum;
@@ -41,5 +39,14 @@ public class PayController  {
 
 
         return new ModelAndView("pay/create");
+    }
+
+    @PostMapping("/notify")
+    public ModelAndView notify(@RequestBody String notifyData) {
+
+        payService.notify(notifyData);
+
+        return new ModelAndView("pay/success");
+
     }
 }

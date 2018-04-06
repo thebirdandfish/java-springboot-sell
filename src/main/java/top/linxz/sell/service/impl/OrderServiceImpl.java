@@ -20,10 +20,7 @@ import top.linxz.sell.enums.ResultEnum;
 import top.linxz.sell.exception.SellException;
 import top.linxz.sell.repository.OrderDetailRepository;
 import top.linxz.sell.repository.OrderMasterRepository;
-import top.linxz.sell.service.OrderService;
-import top.linxz.sell.service.ProductService;
-import top.linxz.sell.service.PushMessageService;
-import top.linxz.sell.service.WebSocket;
+import top.linxz.sell.service.*;
 import top.linxz.sell.utils.KeyUtil;
 
 import javax.transaction.Transactional;
@@ -46,6 +43,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
     @Autowired
     private PushMessageService pushMessageService;
+
+    @Autowired
+    private PayService payService;
 
     @Autowired
     private WebSocket webSocket;
@@ -160,6 +160,7 @@ public class OrderServiceImpl implements OrderService {
         // 如果已支付则退款
         if (orderDTO.getOrderStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
             //TODO
+            payService.refund(orderDTO);
         }
 
         return orderDTO;

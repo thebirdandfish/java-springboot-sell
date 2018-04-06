@@ -20,7 +20,7 @@
             </pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/Users/ztev/tomcat/sell/info.%d.log</fileNamePattern>
+            <fileNamePattern>~/github/sell/info.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -34,7 +34,7 @@
             </pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/Users/ztev/tomcat/sell/error.%d.log</fileNamePattern>
+            <fileNamePattern>~/github/sell/error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 

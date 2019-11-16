@@ -4,10 +4,10 @@
 <body>
 <div id="wrapper" class="toggled">
 
-<#--边栏sidebar-->
+    <#--边栏sidebar-->
     <#include "../common/nav.ftl">
 
-<#--主要内容content-->
+    <#--主要内容content-->
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -20,7 +20,7 @@
                             <th>type</th>
                             <th>创建时间</th>
                             <th>修改时间</th>
-                            <th colspan="2">操作</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+
+</div>
 </body>
 </html>
